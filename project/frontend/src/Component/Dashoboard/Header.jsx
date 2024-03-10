@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 const Header = () => {
   const auth = localStorage.getItem("auth");
+  const navigate = useNavigate();
   const handlelogout = () => {
     localStorage.clear();
-    Navigate("/");
+    navigate("/");
   };
   const [employeeId, setEmployeeId] = useState("");
   const { employeesId } = useParams();
@@ -35,12 +36,18 @@ const Header = () => {
         <li className="px-7 py-2 m-4 tex-xl text-blue-900 bg-green-200 hover:bg-green-500">
           <Link>About</Link>
         </li>
-        <li
-          onClick={handlelogout}
-          className="flex justify-end px-7 py-2 m-4 tex-xl text-blue-900 bg-green-200 hover:bg-green-500"
-        >
-          <Link>Logout</Link>
-        </li>
+        {auth ? (
+          <li
+            onClick={handlelogout}
+            className="flex justify-end px-7 py-2 m-4 tex-xl text-blue-900 bg-green-200 hover:bg-green-500"
+          >
+            <Link>Logout</Link>
+          </li>
+        ) : (
+          <li className="flex justify-end px-7 py-2 m-4 tex-xl text-blue-900 bg-green-200 hover:bg-green-500">
+            <Link>Login</Link>
+          </li>
+        )}
       </ul>
     </div>
   );

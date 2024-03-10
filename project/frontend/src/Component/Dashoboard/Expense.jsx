@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const Expense = () => {
   const auth = localStorage.getItem("auth");
@@ -31,6 +32,12 @@ const Expense = () => {
       headers: myHeader,
     });
     const data = await resposne.json();
+    if (data) {
+      alert(
+        "If manager is available then he will accept ot reject your request"
+      );
+      Navigate("/");
+    }
     console.log(data);
   };
   return (

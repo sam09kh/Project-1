@@ -7,6 +7,7 @@ const Expenselist = () => {
   const auth = localStorage.getItem("auth");
 
   const { employeesId } = useParams();
+  console.log(employeesId);
   const Location = useLocation();
   const [expenses, setExpenses] = useState([]);
   const [employeeId, setEmployeeId] = useState("");
@@ -47,7 +48,6 @@ const Expenselist = () => {
       const data = await response.json();
       if (data) {
         alert(data.message);
-        console.log(data.createdAt);
       }
       setSelectedStatus(null);
     } catch (error) {

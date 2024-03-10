@@ -10,6 +10,7 @@ import Notfound from "../Notfound";
 import Dashboard from "../Dashoboard/Dashboard";
 import Expenselist from "../Dashoboard/Expenselist";
 import Manager from "../Login/Admin";
+import Showmessage from "../Dashoboard/Showmessage";
 
 const Menu = () => {
   return (
@@ -29,7 +30,8 @@ const Menu = () => {
         />
         <Route path="/signup" exact element={<Signup />} />
         <Route path="/manager" exact element={<Manager />} />
-        <Route path="/expenseList" element={<Expenselist />} />
+        <Route path="/expenselist" exact element={<Expenselist />} />
+        <Route path="/showmessage" exact element={<Showmessage />} />
         <Route path="/expenselist/:employeesId" element={<Expenselist />} />
       </Routes>
     </>

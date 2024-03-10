@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "../Header/Navbar";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Manager = () => {
   const [credentials, setCredentials] = useState({
     email: "",
   });
-  const handleLogin = async () => {
+  const navigate = useNavigate();
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const { email } = credentials;
       const response = await fetch(
@@ -23,7 +25,7 @@ const Manager = () => {
       console.log(data);
       if (data) {
         alert(data.message);
-        Navigate(`/expenselist`);
+        navigate(`/expenselist`);
       } else {
         alert(response.message);
       }
